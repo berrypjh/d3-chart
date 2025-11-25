@@ -1,0 +1,47 @@
+{
+  "name": "@berry-chart-test/demo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/demo/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "@berry-chart-test/demo:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "@berry-chart-test/demo:build:development"
+        },
+        "production": {
+          "buildTarget": "@berry-chart-test/demo:build:production"
+        }
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/demo"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "@berry-chart-test/demo:build"
+      }
+    }
+  }
+}
