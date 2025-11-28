@@ -11,6 +11,15 @@
     },
     {
       "path": "./libs/chart-react-native"
+    },
+    {
+      "path": "./shared"
+    },
+    {
+      "path": "./apps/demo-web-e2e"
+    },
+    {
+      "path": "./apps/demo-web"
     }
   ]
 }

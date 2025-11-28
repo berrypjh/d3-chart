@@ -1,0 +1,11 @@
+{
+  "name": "@my-chart/shared-data",
+  "version": "0.0.1",
+  "types": "./src/index.ts",
+  "main": "./src/index.ts",
+  "nx": {
+    "sourceRoot": "shared/src",
+    "projectType": "library",
+    "tags": []
+  }
+}
