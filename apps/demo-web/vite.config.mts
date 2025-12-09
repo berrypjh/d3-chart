@@ -19,14 +19,8 @@ export default defineConfig(() => ({
   plugins: [react()],
   resolve: {
     alias: {
-      '@my-chart/core': path.resolve(
-        root,
-        '../../libs/chart-core/src/index.ts'
-      ),
-      '@my-chart/react': path.resolve(
-        root,
-        '../../libs/chart-react/src/index.ts'
-      ),
+      '@my-chart/core': path.resolve(root, '../../libs/chart-core/src/index.ts'),
+      '@my-chart/react': path.resolve(root, '../../libs/chart-react/src/index.ts'),
       '@my-chart/shared-data': path.resolve(root, '../../shared/src/index.ts'),
     },
   },

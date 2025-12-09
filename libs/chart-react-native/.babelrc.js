@@ -14,9 +14,7 @@ module.exports = function (api) {
     plugins: [],
     env: {
       test: {
-        presets: [
-          ['module:@react-native/babel-preset', { useTransformReactJSX: true }],
-        ],
+        presets: [['module:@react-native/babel-preset', { useTransformReactJSX: true }]],
       },
     },
   };

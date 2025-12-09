@@ -23,9 +23,7 @@ const apiKey = process.env.OPENAI_API_KEY;
 const model = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
 
 if (!apiKey) {
-  console.error(
-    '[ai-commit] OPENAI_API_KEY가 설정되지 않았습니다. 루트 .env를 확인하세요.'
-  );
+  console.error('[ai-commit] OPENAI_API_KEY가 설정되지 않았습니다. 루트 .env를 확인하세요.');
   process.exit(1);
 }
 
@@ -41,9 +39,7 @@ const getStagedDiff = (): string => {
   }
 
   if (!diff.trim()) {
-    console.error(
-      '[ai-commit] 스테이징된 변경이 없습니다. 먼저 `git add`로 변경을 올려주세요.'
-    );
+    console.error('[ai-commit] 스테이징된 변경이 없습니다. 먼저 `git add`로 변경을 올려주세요.');
     process.exit(1);
   }
 
@@ -79,9 +75,7 @@ const generateCommitMessage = async (diff: string): Promise<CommitMessage> => {
     input: [
       {
         role: 'user',
-        content:
-          '다음 Git diff를 보고 한국어로 커밋 제목과 상세 설명을 만들어줘.\n\n' +
-          diff,
+        content: '다음 Git diff를 보고 한국어로 커밋 제목과 상세 설명을 만들어줘.\n\n' + diff,
       },
     ],
     max_output_tokens: 256,
@@ -113,9 +107,7 @@ const generateCommitMessage = async (diff: string): Promise<CommitMessage> => {
   return { title, body };
 };
 
-const editCommitMessageWithEditor = (
-  message: CommitMessage
-): CommitMessage | null => {
+const editCommitMessageWithEditor = (message: CommitMessage): CommitMessage | null => {
   const tmpDir = os.tmpdir();
   const tmpFile = path.join(tmpDir, `ai-commit-${Date.now()}.txt`);
 
@@ -141,9 +133,7 @@ const editCommitMessageWithEditor = (
   });
 
   if (result.status !== 0) {
-    console.error(
-      `\n[ai-commit] 에디터가 비정상 종료되었습니다. (exit code: ${result.status})`
-    );
+    console.error(`\n[ai-commit] 에디터가 비정상 종료되었습니다. (exit code: ${result.status})`);
     return null;
   }
 
@@ -164,9 +154,7 @@ const editCommitMessageWithEditor = (
   return { title, body };
 };
 
-const askUserForDecision = async (
-  message: CommitMessage
-): Promise<CommitMessage | null> => {
+const askUserForDecision = async (message: CommitMessage): Promise<CommitMessage | null> => {
   console.log('제안된 커밋 메시지:');
   console.log(`\n${message.title}\n`);
   if (message.body) {
@@ -175,9 +163,7 @@ const askUserForDecision = async (
   }
 
   const rl = readline.createInterface({ input, output });
-  const answer = await rl.question(
-    '이대로 커밋할까요? (y = 예, e = 제목/본문 수정, n = 취소) '
-  );
+  const answer = await rl.question('이대로 커밋할까요? (y = 예, e = 제목/본문 수정, n = 취소) ');
 
   const lower = answer.trim().toLowerCase();
 
@@ -218,9 +204,7 @@ const runGitCommit = (message: CommitMessage) => {
   });
 
   if (result.status !== 0) {
-    console.error(
-      `\n[ai-commit] git commit이 실패했습니다. (exit code: ${result.status})`
-    );
+    console.error(`\n[ai-commit] git commit이 실패했습니다. (exit code: ${result.status})`);
     process.exit(result.status ?? 1);
   }
 };

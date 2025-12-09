@@ -36,12 +36,7 @@ export default [
     },
   },
   {
-    files: [
-      '**/*.stories.tsx',
-      '**/*.stories.ts',
-      '**/*.stories.jsx',
-      '**/*.stories.js',
-    ],
+    files: ['**/*.stories.tsx', '**/*.stories.ts', '**/*.stories.jsx', '**/*.stories.js'],
     rules: {
       '@nx/enforce-module-boundaries': 'off',
     },

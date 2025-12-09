@@ -8,18 +8,14 @@ const mockData = [
 
 describe('BarChart Component', () => {
   it('should render correct number of bars', () => {
-    const { container } = render(
-      <BarChart width={300} height={200} data={mockData} />
-    );
+    const { container } = render(<BarChart width={300} height={200} data={mockData} />);
 
     const bars = container.querySelectorAll('rect');
     expect(bars.length).toBe(2);
   });
 
   it('should render labels', () => {
-    const { getByText } = render(
-      <BarChart width={300} height={200} data={mockData} />
-    );
+    const { getByText } = render(<BarChart width={300} height={200} data={mockData} />);
 
     expect(getByText('A')).toBeTruthy();
     expect(getByText('B')).toBeTruthy();

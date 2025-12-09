@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "format": "nx format:write",
+    "format:check": "nx format:check",
+    "check": "nx run-many -t lint,test,build",
     "start": "nx serve demo-web",
     "start:mobile:expo": "cd apps/demo-mobile && expo start",
     "test": "nx run-many -t test",

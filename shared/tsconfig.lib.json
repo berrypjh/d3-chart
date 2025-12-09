@@ -8,12 +8,6 @@
     "rootDir": "src",
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
   },
-  "exclude": [
-    "out-tsc",
-    "dist",
-    "eslint.config.js",
-    "eslint.config.cjs",
-    "eslint.config.mjs"
-  ],
+  "exclude": ["out-tsc", "dist", "eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"],
   "include": ["src/**/*.js", "src/**/*.ts"]
 }

@@ -15,9 +15,7 @@ const apiKey = process.env.OPENAI_API_KEY;
 const model = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
 
 if (!apiKey) {
-  console.error(
-    '[ai-ui] OPENAI_API_KEY가 설정되지 않았습니다. 루트 .env를 확인하세요.'
-  );
+  console.error('[ai-ui] OPENAI_API_KEY가 설정되지 않았습니다. 루트 .env를 확인하세요.');
   process.exit(1);
 }
 
@@ -48,10 +46,7 @@ const stripCodeFence = (text: string): string => {
     result = result.replace(/```$/, '');
   }
 
-  result = result.replace(
-    /^\s*import\s+React\s+from\s+['"]react['"];?\s*\r?\n?/gm,
-    ''
-  );
+  result = result.replace(/^\s*import\s+React\s+from\s+['"]react['"];?\s*\r?\n?/gm, '');
 
   return result.trim();
 };
@@ -67,7 +62,7 @@ const runFix = (files: string[]) => {
     });
   } catch (e) {
     console.warn(
-      '[ai-ui] eslint --fix 실행 중 오류가 발생했습니다. (테스트 코드/스토리는 그대로 생성됩니다.)'
+      '[ai-ui] eslint --fix 실행 중 오류가 발생했습니다. (테스트 코드/스토리는 그대로 생성됩니다.)',
     );
   }
 };
@@ -76,7 +71,7 @@ const generateOrUpdateStory = async (
   uiPath: string,
   uiCode: string,
   storyPath: string,
-  existingStory: string | null
+  existingStory: string | null,
 ): Promise<string> => {
   const hasExisting = !!existingStory;
   const instructions = [
@@ -133,7 +128,7 @@ const generateOrUpdateTest = async (
   uiPath: string,
   uiCode: string,
   testPath: string,
-  existingTest: string | null
+  existingTest: string | null,
 ): Promise<string> => {
   const hasExisting = !!existingTest;
   const instructions = [
@@ -191,7 +186,7 @@ const main = async () => {
   if (!uiArg) {
     console.error(
       '사용법: pnpm ai:ui <UI 컴포넌트 tsx/ts 파일 경로>\n' +
-        '예) pnpm ai:ui libs/ui/src/button/Button.tsx'
+        '예) pnpm ai:ui libs/ui/src/button/Button.tsx',
     );
     process.exit(1);
   }
@@ -217,30 +212,18 @@ const main = async () => {
   ]);
 
   console.log('[ai-ui] Storybook 스토리 생성/업데이트 중...');
-  const storyCode = await generateOrUpdateStory(
-    uiPath,
-    uiCode,
-    storyPath,
-    existingStory
-  );
+  const storyCode = await generateOrUpdateStory(uiPath, uiCode, storyPath, existingStory);
   await fs.writeFile(storyPath, storyCode, 'utf8');
   console.log(`[ai-ui] Storybook 파일 완료: ${storyPath}`);
 
   console.log('[ai-ui] Test 코드 생성/업데이트 중...');
-  const testCode = await generateOrUpdateTest(
-    uiPath,
-    uiCode,
-    testPath,
-    existingTest
-  );
+  const testCode = await generateOrUpdateTest(uiPath, uiCode, testPath, existingTest);
   await fs.writeFile(testPath, testCode, 'utf8');
   console.log(`[ai-ui] Test 파일 완료: ${testPath}`);
 
   runFix([storyPath, testPath]);
 
-  console.log(
-    '\n[ai-ui] 완료되었습니다. 변경 내용을 git diff로 한 번 확인해 주세요.'
-  );
+  console.log('\n[ai-ui] 완료되었습니다. 변경 내용을 git diff로 한 번 확인해 주세요.');
 };
 
 main().catch((err) => {

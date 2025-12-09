@@ -32,8 +32,8 @@ export default function App() {
           </View>
 
           <Text style={styles.description}>
-            This chart is rendered using react-native-svg, calculating
-            coordinates from the shared core library.
+            This chart is rendered using react-native-svg, calculating coordinates from the shared
+            core library.
           </Text>
         </View>
       </ScrollView>
