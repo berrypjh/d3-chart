@@ -3,7 +3,7 @@
   "version": "0.0.2-1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/my-chart-lib/source.git",
+    "url": "https://github.com/berrypjh/library_practice",
     "directory": "libs/chart-core"
   },
   "type": "module",
@@ -11,9 +11,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "@berry-test-chart-lib/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"

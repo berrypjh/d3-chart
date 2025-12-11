@@ -3,7 +3,7 @@
   "version": "0.0.2-1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/my-chart-lib/source.git",
+    "url": "https://github.com/berrypjh/library_practice",
     "directory": "libs/chart-react"
   },
   "type": "module",
@@ -11,9 +11,7 @@
   "module": "./dist/index.esm.js",
   "types": "./dist/index.esm.d.ts",
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "@berry-test-chart-lib/source": "./src/index.ts",
       "types": "./dist/index.esm.d.ts",
       "import": "./dist/index.esm.js",
       "default": "./dist/index.esm.js"
