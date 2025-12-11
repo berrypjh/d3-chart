@@ -28,6 +28,9 @@
     "build:libs:chart-react-native": "nx build @berry-test-chart/react-native",
     "build:apps:demo-web": "nx build @berry-test-chart/demo-web",
     "build:apps:demo-mobile": "nx build @berry-test-chart/demo-mobile",
+    "release:npm": "tsx tools/scripts/release/release-npm.ts",
+    "release:local": "tsx tools/scripts/release/release-local.ts",
+    "local-registry": "nx local-registry",
     "ai:commit": "tsx tools/scripts/ai/ai-commit-msg.mts",
     "ai:ui": "tsx tools/scripts/ai/ai-ui-scaffold.mts"
   },
