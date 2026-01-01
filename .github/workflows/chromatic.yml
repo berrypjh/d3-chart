@@ -22,9 +22,10 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Build Storybook
+        run: pnpm exec nx build-storybook @berrypjh/react
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          buildScriptName: build-storybook
           storybookBuildDir: dist/storybook/chart-react
