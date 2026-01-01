@@ -69,7 +69,7 @@ export const BarChart: React.FC<BarChartProps> = ({
                 x={bar.x + bar.width / 2}
                 y={height - 5}
                 textAnchor="middle"
-                fontSize={12}
+                fontSize={10}
                 className="bar-chart__label"
               >
                 {bar.data.label}
