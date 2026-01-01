@@ -6,7 +6,7 @@ const root = import.meta.dirname;
 
 const config: StorybookConfig = {
   stories: ['../src/lib/**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],
-  addons: [],
+  addons: ['@storybook/addon-docs', '@storybook/addon-a11y'],
   framework: {
     name: '@storybook/react-vite',
     options: {},

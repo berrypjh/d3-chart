@@ -1,0 +1,25 @@
+.bar-chart {
+  display: block;
+}
+.bar-chart--bg-gray {
+  background: #f3f4f6;
+}
+.bar-chart--bg-white {
+  background: #ffffff;
+}
+.bar-chart--bg-none {
+  background: transparent;
+}
+.bar-chart__bar {
+  transition: opacity 200ms ease, transform 200ms ease;
+  transform-origin: center bottom;
+}
+.bar-chart__bar:hover {
+  opacity: 0.8;
+  transform: scaleY(1.01);
+}
+.bar-chart__label {
+  fill: #666;
+  user-select: none;
+  pointer-events: none;
+}
