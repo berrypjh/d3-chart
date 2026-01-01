@@ -23,3 +23,6 @@
   user-select: none;
   pointer-events: none;
 }
+.bar-chart__bar--clickable {
+  cursor: pointer;
+}

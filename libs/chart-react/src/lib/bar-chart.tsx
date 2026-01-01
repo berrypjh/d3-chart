@@ -13,8 +13,8 @@ interface BarChartProps {
   labelPosition?: LabelPosition;
   singleColor?: string;
   barRadius?: number;
-  className?: string;
-  ariaLabel?: string;
+  onBarClick?: (point: DataPoint) => void;
+  testIdPrefix?: string;
 }
 
 const BG_CLASS: Record<Background, string> = {
@@ -31,20 +31,18 @@ export const BarChart: React.FC<BarChartProps> = ({
   labelPosition = 'bottom',
   singleColor = '#3b82f6',
   barRadius = 4,
-  className,
-  ariaLabel = 'Bar chart',
+  onBarClick,
+  testIdPrefix = 'bar',
 }) => {
-  const bars = useMemo(() => {
-    return computeBarCoordinates({ data, width, height });
-  }, [data, width, height]);
+  const bars = useMemo(() => computeBarCoordinates({ data, width, height }), [data, width, height]);
 
   return (
     <svg
       width={width}
       height={height}
       role="img"
-      aria-label={ariaLabel}
-      className={['bar-chart', BG_CLASS[background], className].filter(Boolean).join(' ')}
+      aria-label="Bar chart"
+      className={['bar-chart', BG_CLASS[background]].join(' ')}
     >
       {bars.map((bar) => {
         const fill = singleColor ?? bar.color;
@@ -52,6 +50,7 @@ export const BarChart: React.FC<BarChartProps> = ({
         return (
           <g key={bar.data.id} className="bar-chart__group">
             <rect
+              data-testid={`${testIdPrefix}-${bar.data.id}`}
               x={bar.x}
               y={bar.y}
               width={bar.width}
@@ -59,7 +58,10 @@ export const BarChart: React.FC<BarChartProps> = ({
               fill={fill}
               rx={barRadius}
               ry={barRadius}
-              className="bar-chart__bar"
+              className={['bar-chart__bar', onBarClick ? 'bar-chart__bar--clickable' : '']
+                .filter(Boolean)
+                .join(' ')}
+              onClick={onBarClick ? () => onBarClick(bar.data) : undefined}
             />
 
             {labelPosition === 'bottom' && (

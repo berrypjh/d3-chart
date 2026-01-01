@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BarChart } from './bar-chart';
+import { within, userEvent, expect, fn } from 'storybook/test';
 
 const meta: Meta<typeof BarChart> = {
   title: 'Charts/BarChart',
@@ -83,5 +84,30 @@ export const WhiteBackground: Story = {
         story: '배경색을 white로 설정한 예제입니다.',
       },
     },
+  },
+};
+
+export const Clickable: Story = {
+  args: {
+    ...Default.args,
+    onBarClick: fn(),
+  },
+  tags: ['!autodocs'],
+  play: async ({ canvasElement, args, step }) => {
+    const canvas = within(canvasElement);
+
+    await step('renders bars & labels', async () => {
+      await expect(canvas.getByText('A')).toBeInTheDocument();
+      await expect(canvas.getByText('J')).toBeInTheDocument();
+      const rects = canvasElement.querySelectorAll('rect');
+      await expect(rects.length).toBe(args.data.length);
+    });
+
+    await step('click first bar triggers callback', async () => {
+      const firstBar = canvas.getByTestId('bar-1');
+      await userEvent.click(firstBar);
+      await expect(args.onBarClick).toHaveBeenCalledTimes(1);
+      await expect(args.onBarClick).toHaveBeenCalledWith(args.data[0]);
+    });
   },
 };
